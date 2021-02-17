@@ -20,13 +20,9 @@ COPY entrypoint.sh /
 # copy delete older backup script to /
 COPY deleteold.sh /
 
-# copy set cron script to /
-COPY setcron.sh /
-
 # give execution permission to scripts
 RUN chmod +x /entrypoint.sh && \
     chmod +x /backup.sh && \
-    chmod +x /deleteold.sh && \
-    chmod +x /setcron.sh
+    chmod +x /deleteold.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
