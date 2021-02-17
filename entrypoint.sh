@@ -7,4 +7,8 @@
 /backup.sh
 
 # start crond in foreground
+if [ ! -z $CRON ]
+then
+  echo "$CRON /backup.sh" > /etc/crontabs/root
+fi
 exec crond -f
