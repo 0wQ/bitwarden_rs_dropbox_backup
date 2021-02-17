@@ -20,11 +20,13 @@ COPY entrypoint.sh /
 # copy delete older backup script to /
 COPY deleteold.sh /
 
+# copy set cron script to /
+COPY setcron.sh /
+
 # give execution permission to scripts
 RUN chmod +x /entrypoint.sh && \
     chmod +x /backup.sh && \
-    chmod +x /deleteold.sh
-
-RUN echo "0 1 * * * /backup.sh" > /etc/crontabs/root
+    chmod +x /deleteold.sh && \
+    chmod +x /setcron.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
