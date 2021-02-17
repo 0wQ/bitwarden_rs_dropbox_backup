@@ -7,7 +7,7 @@ BACKUP_FILE="bitwardenrs_$(date "+%F-%H%M%S")"
 sqlite3 /data/db.sqlite3 ".backup '/tmp/db.sqlite3'"
 
 # tar up backup and encrypt with openssl and encryption key
-tar --ignore-failed-read -czvf /tmp/${BACKUP_FILE}.tar.gz /tmp/db.sqlite3 /data/attachments
+tar -czvf /tmp/${BACKUP_FILE}.tar.gz /tmp/db.sqlite3 /data/attachments
 if [ ! -z $BACKUP_ENCRYPTION_KEY ]
 then
   openssl enc -e -aes256 -salt -pbkdf2 -pass pass:${BACKUP_ENCRYPTION_KEY} -in /tmp/${BACKUP_FILE}.tar.gz -out /tmp/${BACKUP_FILE}.tar.gz.enc
