@@ -7,5 +7,6 @@
 /backup.sh
 
 # start crond in foreground
-/setcron.sh
+[ -z "${CRON}" ] && CRON='0 1 * * *'
+echo "${CRON} /backup.sh" > /etc/crontabs/root
 exec crond -f
